@@ -26,7 +26,7 @@ Vstart = randi([Vreset Vth],2,1);
 t = log((Vstart - EL - RmIe)/(Vzero - EL - RmIe)) * Tm * -1;
 
 
-%syncon = GsPmax
+%syncon = Gs * Pmax * exp(-t/Ts)
 
 for timer = 1:1000,
     for neuron = 1:2,
@@ -43,6 +43,6 @@ end
 plottime = 0:999;
 plot(plottime, V)
 title('voltage of a neuron')
-xlabel('Time in ms') % x-axis label
-ylabel('Voltage in mV') % y-axis label
-legend('y = sin(x)','y = cos(x)')
+xlabel('Time (ms)') % x-axis label
+ylabel('Voltage (mV)') % y-axis label
+legend('neuron 1','neuron 2')
