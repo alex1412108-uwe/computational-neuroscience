@@ -26,7 +26,7 @@ Ie = 0;
 V = zeros(1000,1);
 
 while true
-    
+    t = 0;
     for time=1:1000,
 
         V(time) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(1)^(-t/Tm);
