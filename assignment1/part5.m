@@ -15,16 +15,28 @@ Vzero = -70;
 Dt = 1; %ms
 t = 0;
 
+
+% Gk*(Ek - V)
+% Tk*(dG/dt)
+dG = 0.01;          %[Mohm]
+dt = 1;             %[ms]
+Ek = -80;           %[mV]
+Gk = 0;
+Tslow = 200;
+
 for timer=1:1000,
     
-    V(timer) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(-t/Tm);
+    Vtemp = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(-t/Tm);
+    V(timer) = Vtemp + Gk * (Ek - Vtemp);
     if V(timer) >= Vth
         V(timer) = Vreset;
         t = 0;
+        Gk = Gk + dG;
     end
     
     % relative time
     t = t + Dt;
+    Gk = Gk - Gk * (dt/Tslow);
 end
 plottime = 0:999;
 plot(plottime, V)
