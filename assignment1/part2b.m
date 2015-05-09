@@ -1,7 +1,7 @@
 function integrateandfiremodel
 %
-% part 2 of the neuron model
-% answer returned is 3.0000
+% part 2b of the neuron model
+% 
 %
 %?m = 10 [ms] (i.e. ?m is the time constant of the membrane)
 %EL = Vreset = -70 [mV]
@@ -28,7 +28,7 @@ V = zeros(1000,1);
 
 for time=1:1000,
 
-    V(time) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(1)^(-t/Tm);
+    V(time) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(-t/Tm);
     if V(time) >= Vth
         V(time) = Vreset;
         t = 0;
@@ -40,3 +40,6 @@ for time=1:1000,
 
 end
 plot(V)
+title('voltage when Ie is 0.1 less than minumum required current to reach Vth')
+xlabel('Time (ms)') % x-axis label
+ylabel('Voltage (mV)') % y-axis label
