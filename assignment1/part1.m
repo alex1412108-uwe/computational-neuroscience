@@ -20,11 +20,11 @@ Vzero = -70;
 Dt = 1; %ms
 t = 0;
 
-for time=1:1000,
+for timer=1:1000,
     
-    V(time) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(1)^(-t/Tm);
-    if V(time) >= Vth
-        V(time) = Vreset;
+    V(timer) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(-t/Tm);
+    if V(timer) >= Vth
+        V(timer) = Vreset;
         t = 0;
     end
     
@@ -33,3 +33,6 @@ for time=1:1000,
 end
 plottime = 0:999;
 plot(plottime, V)
+title('voltage of a neuron against time')
+xlabel('Time (ms)') % x-axis label
+ylabel('Voltage (mV)') % y-axis label
