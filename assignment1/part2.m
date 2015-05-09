@@ -29,7 +29,7 @@ while true
     t = 0;
     for time=1:1000,
 
-        V(time) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(1)^(-t/Tm);
+        V(time) = EL + Rm * Ie + (Vzero - EL - Rm * Ie) * exp(-t/Tm);
         if V(time) >= Vth
             V(time) = Vreset;
             t = 0;
