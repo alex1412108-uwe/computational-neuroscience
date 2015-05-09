@@ -13,7 +13,7 @@ EL = -70;            %[mV]
 Vreset = -70;        %[mV]
 Vth = -40;           %[mV]
 Rm = 10;             %[M?]
-Ie = 3.0;            %[nA]
+Ie = 3.1;            %[nA]
 
 Vzero = -70;
 
@@ -31,4 +31,5 @@ for time=1:1000,
     % relative time
     t = t + Dt;
 end
-plot(V)
+plottime = 0:999;
+plot(plottime, V)
