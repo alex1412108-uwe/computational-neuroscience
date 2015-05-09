@@ -27,6 +27,9 @@ t = log((Vstart - EL - RmIe)/(Vzero - EL - RmIe)) * Tm * -1;
 
 
 %syncon = Gs * Pmax * exp(-t/Ts)
+%Is(timer) = GsS(timer) * (Es - V)
+%s(timer) = t * exp(-t/Ts)
+%synapse(neuron) = RmGs * Pmax * exp(-t/Ts);
 
 for timer = 1:1000,
     for neuron = 1:2,
