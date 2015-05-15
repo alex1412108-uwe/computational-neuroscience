@@ -25,25 +25,23 @@ load 'data.mat'
 
 
 
-neuron = neuron1;
+neuron = neuron4;
 
 sizeofneuron = size(neuron);
-differencesbetweeenspikes = zeros(sizeofneuron(1), 1);
+differencesbetweeenspikes = zeros(sizeofneuron(1) + 1, sizeofneuron(1) + 1);
+
 for i = 1:sizeofneuron(1)
-    pastneuron = [0; neuron];
-    currentneuron = [neuron; 0]; %formating so that matrices are the same size
-
-    differenceneuron = currentneuron - pastneuron;
-
-    fixdifferenceneuron = differenceneuron(1:end-1); % remove formating number
-    fixdifferenceneuron(1) = 0; % 0 first value (difference between itself)
-    
-    differencesbetweeenspikes = [differencesbetweeenspikes fixdifferenceneuron];
-    
-    neuron = circshift(neuron, 1);
+    for j = 1:sizeofneuron(1)
+        
+        differencesbetweeenspikes(i,j) = neuron(i) - neuron(j);
+        
+    end
 end
 
- 
+histogram(differencesbetweeenspikes, 1000000)
+title('Correlogram of Neuron4')
+xlabel('time (1/10000 seconds)') % x-axis label
+ylabel('number of spikes') % y-axis label
 printing = 'done'
 
 
