@@ -7,14 +7,14 @@ function integrateandfiremodel
 load 'data.mat'
 
 
-plot(x,y)
-
-figure
-plot3(x,y,time)
-title('rat positions against time')
-xlabel('x position') % x-axis label
-ylabel('y position') % y-axis label
-zlabel('Time (ms)') % z-axis label
+% plot(x,y)
+% 
+% figure
+% plot3(x,y,time)
+% title('rat positions against time')
+% xlabel('x position') % x-axis label
+% ylabel('y position') % y-axis label
+% zlabel('Time (ms)') % z-axis label
 
 % figure
 % hold on
@@ -25,33 +25,73 @@ zlabel('Time (ms)') % z-axis label
 % legend('neuron 1','neuron 2','neuron 3','neuron 4')
 
 
-testingneuron1=floor(neuron1/1000);
-testingneuron2=floor(neuron2/1000);
-testingneuron3=floor(neuron3/1000);
-testingneuron4=floor(neuron4/1000);
 
-testingtime=transpose(floor(time/1000));
+
+% figure
+% for i=1:countersize(2),
+%     
+%     if ismember(testingtime(i), testingneuron1)
+%         plot(x(i),y(i),'.r')
+%     end
+%     if ismember(testingtime(i), testingneuron2)
+%         plot(x(i),y(i),'.g')
+%     end
+%     if ismember(testingtime(i), testingneuron3)
+%         plot(x(i),y(i),'.b')
+%     end
+%     if ismember(testingtime(i), testingneuron4)
+%         plot(x(i),y(i),'.y')
+%     end
+% end
+% printing = 'done'
+
+% printing = 0;
+% 
+% countersize = (max(time) - min(time))/100;
+% counttime = 1;
+% 
+% figure
+% for i=min(time):max(time),
+%     if i >= time(counttime)
+%         plot3(x(counttime),y(counttime),time(counttime),'.g')
+%         counttime = counttime + 1;
+%     end
+% end
+
+
+testingtime = transpose(time);
+countersize = size(time);
 
 printing = 0;
 
-countersize = size(testingtime);
 
-countersize(2);
+neuron1position = zeros(countersize(1),1);
+neuron1cutoff = size(neuron1);
+counttime1 = 1;
+
+counttime = 1;
 
 figure
-for i=1:countersize(2),
+hold on
+for i = testingtime
+    if counttime1 <= neuron1cutoff(1)
+        if i >= neuron1(counttime1)
+            neuron1position(counttime) = 1;
+            counttime1 = counttime1 + 1;
+            plot3(x(counttime),y(counttime),time(counttime),'.g')
+        else
+            neuron1position(counttime) = 0;
+        end
+    end
     
-    if ismember(testingtime(i), testingneuron1)
-        plot(x(i),y(i),'.r')
-    end
-    if ismember(testingtime(i), testingneuron2)
-        plot(x(i),y(i),'.g')
-    end
-    if ismember(testingtime(i), testingneuron3)
-        plot(x(i),y(i),'.b')
-    end
-    if ismember(testingtime(i), testingneuron4)
-        plot(x(i),y(i),'.y')
-    end
+
+    
+    
+    
+    counttime = counttime + 1;
 end
-printing = 'done'
+
+
+plot3(x,y,time,'b')
+
+
