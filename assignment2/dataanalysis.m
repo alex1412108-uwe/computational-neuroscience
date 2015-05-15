@@ -1,4 +1,4 @@
-function integrateandfiremodel
+function spikepositions
 %
 % 
 % 
