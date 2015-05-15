@@ -12,8 +12,8 @@ currentneuron = [neuron1; 0]; %formating so that matrices are the same size
 
 differenceneuron = currentneuron - pastneuron;
 
-fixdifferenceneuron = differenceneuron(1:end-1);
-fixdifferenceneuron(1) = 0;
+fixdifferenceneuron = differenceneuron(1:end-1); % remove formating number
+fixdifferenceneuron(1) = 0; % 0 first value (difference between itself)
 
 plot(fixdifferenceneuron)
 
