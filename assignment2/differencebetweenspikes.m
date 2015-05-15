@@ -6,22 +6,19 @@ function differencebetweenspikes
 
 load 'data.mat'
 
+pastneuron = [0; neuron1];
+currentneuron = [neuron1; 0]; %formating so that matrices are the same size
 
-pastspiketime = neuron1(1);
-sizeofneuron = size(neuron1);
-differenceinspikes = zeros(sizeofneuron(1)+1);
+differenceneuron = currentneuron - pastneuron;
 
-count = 1;
-for i = neuron1
-    differenceinspikes(count) = neuron1
-    count = count + 1;
-end
+fixdifferenceneuron = differenceneuron(1:end-1);
+fixdifferenceneuron(1) = 0;
 
-figure
+plot(fixdifferenceneuron)
 
-title('Spike Time difference of Neuron1')
-xlabel('time (1/10000 seconds)') % x-axis label
-ylabel('number of spikes') % y-axis label
+title('Spike Time Difference of Neuron1')
+xlabel('spikes') % x-axis label
+ylabel('difference between spikes') % y-axis label
 
 
  
